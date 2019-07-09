@@ -10,8 +10,17 @@ import chalk from 'chalk';
 const app = express();
 
 mongoose.Promise = global.Promise;
+let dbUrl = '';
+
+if (process.env.ENV === 'Test'){
+  console.log(chalk.blue('This is a test'));
+  dbUrl = config["db-url-test"];
+} else {
+  dbUrl = config["db-url"];
+}
+
 // Connecting to the database
-mongoose.connect(config["db-url"], {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true
 }).then(() => {
     console.log(chalk.green("Successfully connected to the database"));

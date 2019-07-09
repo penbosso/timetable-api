@@ -1,6 +1,8 @@
 import should from 'should';
 import request from 'supertest';
 import mongoose from 'mongoose';
+
+process.env.ENV = 'Test';
 import app from '../app';
 
 
@@ -9,14 +11,23 @@ const agent = request.agent(app);
 
 describe('User Crud Test', () => {
   it('should allow a user to be created and return _id', (done) => {
-    const userPost = {firstName:"Somefisrt", lastName:"Somelast", email:"some@test.mail", password:"Passsome"};
+    const userPost = {firstName:"Somefisrt", lastName:"Somelast", email:"some21111@test.mail", password:"Passsome"};
 
-    agent.post('/api/users')
+    agent.post('/users')
       .send(userPost)
       .expect(200)
       .end((err,results) => {
-        results.body.permissionLevel.should.not.equal(3);
-        results.body.should.have.property('_id');
+        results.body.should.have.property('id');
+        done();
       })
+  });
+  afterEach((done) => {
+    User.deleteMany({}).exec();
+    done();
+  });
+
+  after((done) => {
+    mongoose.connection.close();
+    done();
   });
 });

@@ -31,6 +31,7 @@ exports.insert = (req, res) => {
 exports.getById = (req, res) => {
   UserModel.findById(req.params.userId)
       .then((result) => {
+          delete result.password;
           res.status(200).send(result);
   })
   .catch(function (err){
@@ -62,7 +63,13 @@ exports.list = (req, res) => {
       }
   }
   UserModel.list(limit, page).then((result) => {
-      res.status(200).send(result);
+    const returnResult = result.map((result) => {
+      const newResult = result.toJSON();
+      delete newResult.password
+      newResult.links = {};
+      newResult.links.self =`http://${req.headers.host}/users/${result._id}`;
+      return newResult;});
+      res.status(200).send(returnResult);
   })
 };
 
