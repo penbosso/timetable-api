@@ -4,11 +4,11 @@
   "description": "An application for departments in school publish timetables online for easy accessibility to students, also for the creation of personal timetable by users.",
   "main": "app.js",
   "scripts": {
-    "start": "npm-run-all --parallel open:app lint:watch test:watch",
-    "open:app": "babel-node app.js",
+    "start": "npm-run-all --parallel open:app -- --watch",
+    "open:app": "babel-node server.js",
     "lint": "eslint .",
     "lint:watch": "npm run lint -- --watch",
-    "test": "mocha --reporter progress testSetup.js \"**/*.test.js\"",
+    "test": "mocha --reporter progress testSetup.js \"*/*.test.js\"",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
@@ -34,8 +34,6 @@
     "node-uuid": "^1.4.8"
   },
   "devDependencies": {
-    "mocha": "^6.1.4",
-    "nock": "^10.0.6",
     "babel-cli": "^6.26.0",
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
@@ -46,6 +44,12 @@
     "eslint": "3.8.1",
     "eslint-plugin-import": "^2.18.0",
     "eslint-watch": "^5.1.2",
-    "npm-run-all": "3.1.1"
+    "mocha": "^6.1.4",
+    "nock": "^10.0.6",
+    "npm-run-all": "3.1.1",
+    "open": "^6.4.0",
+    "should": "^13.2.3",
+    "sinon": "^7.3.2",
+    "supertest": "^4.0.2"
   }
 }
