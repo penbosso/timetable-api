@@ -1,7 +1,7 @@
 /* eslint-disable import/ignore */
 module.exports = {
-  "db-url": "mongodb+srv://db_user:chri5t@cluster0-mitxy.mongodb.net/test?retryWrites=true&w=majority",
-  "db-url-test": "mongodb+srv://db_user:chri5t@cluster0-mitxy.mongodb.net/timetable?retryWrites=true&w=majority",
+  "db-url-test": "mongodb+srv://db_user:chri5t@cluster0-mitxy.mongodb.net/test?retryWrites=true&w=majority",
+  "db-url": "mongodb+srv://db_user:chri5t@cluster0-mitxy.mongodb.net/timetable?retryWrites=true&w=majority",
   "port": 3600,
   "appEndpoint": "http://localhost:3600",
   "apiEndpoint": "http://localhost:3600",
