@@ -1,0 +1,6 @@
+{
+  "name": "Time Table API",
+  "description": "Class schedule api to generate timestable",
+  "repository": "https://github.com/penbosso/timetable-api.git",
+  "keywords":["node","express","API"]
+}
