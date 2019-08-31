@@ -11,7 +11,7 @@ const agent = request.agent(app);
 
 describe('User Crud Test', () => {
   it('should allow a user to be created and return _id', (done) => {
-    const userPost = {firstName:"Somefisrt", lastName:"Somelast", email:"some21111@test.mail", password:"Passsome"};
+    const userPost = {otherName:"Somefisrt", lastName:"Somelast", email:"some21111@test.mail", password:"Passsome"};
 
     agent.post('/users')
       .send(userPost)

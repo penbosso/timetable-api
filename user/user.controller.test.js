@@ -15,7 +15,7 @@ describe('User Controller Test', () => {
 
       const req = {
         body: {
-          firstName: 'SomeName',
+          otherName: 'SomeName',
           lastName: 'SomeLastName',
           password: 'password'
           }

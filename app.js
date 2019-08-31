@@ -31,7 +31,7 @@ mongoose.connect(dbUrl, {
 });
 
 app.get('/', function(req, res){
-  res.send('Hey Setted UP');
+  res.send('You Setted UP <br> get jsonview chrome extention and head to /schedules ');
 });
 
 app.use(function (req, res, next) {

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 /* eslint-disable import/default */
 
 const userSchema = new Schema({
-  firstName: {type: String, required: true},
+  otherName: {type: String, required: true},
   lastName: {type: String, required: true},
   email: {type: String, required: true, unique: true,
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
