@@ -10,7 +10,7 @@ exports.insert = (req, res) => {
       return res.status(409).json({
         message: "email already exists"
       });
-    } else {
+    } else {console.log(req.body.password);
       let salt = crypto.randomBytes(16).toString('base64');
       let hash = crypto.createHmac('sha512',salt)
                                        .update(req.body.password)
@@ -20,6 +20,7 @@ exports.insert = (req, res) => {
       UserModel.createUser(req.body)
           .then((result) => {
               res.status(201).send({id: result._id});
+            // this.getById(result._id);
           })
           .catch(function (err){
             res.status(404).send(err);
