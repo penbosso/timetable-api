@@ -19,8 +19,7 @@ exports.insert = (req, res) => {
       req.body.permissionLevel = 1;
       UserModel.createUser(req.body)
           .then((result) => {
-              // res.status(201).send({id: result._id});
-            this.getById(result._id);
+              res.status(201).send({id: result._id});
           })
           .catch(function (err){
             res.status(404).send(err);
