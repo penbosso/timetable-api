@@ -14,7 +14,7 @@ server.listen(app.get('port'), function(err){
       console.log(err);
     }
     else{
-      console.log(chalk.green('Starting app in dev mode...'))
+      console.log(chalk.green('Starting app in dev mode... on port: '),app.get('port'))
       // open('http://localhost:'+ config.port);
     }
   });
