@@ -1,5 +1,5 @@
 /* eslint-disable import/ignore */
-const ADMIN_PERMISSION = 4096;
+const ADMIN_PERMISSION = 3;
 
 exports.minimumPermissionLevelRequired = (required_permission_level) => {
     return (req, res, next) => {

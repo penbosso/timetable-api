@@ -2,7 +2,7 @@ import Course from './course.model';
 import CourseInstance from './courseInstance.model';
 
 
-exports.schedule_get_all = (req, res, next) => {
+exports.schedule_get_all = (req, res) => {
   CourseInstance.find()
             .populate("course")
             .exec()
@@ -16,7 +16,7 @@ exports.schedule_get_all = (req, res, next) => {
           });
 };
 
-exports.schedule_get_similar = (req, res, next) => {
+exports.schedule_get_similar = (req, res) => {
   CourseInstance.find({course : req.params._id})
             .populate("course")
             .exec()
@@ -29,3 +29,9 @@ exports.schedule_get_similar = (req, res, next) => {
               });
           });
 };
+
+exports.create_schedule = (req, res) => {
+  const courseInstance = new CourseInstance(req.body);
+  courseInstance.save();
+  res.status(201).json(courseInstance);
+}
