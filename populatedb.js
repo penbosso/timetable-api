@@ -8,7 +8,7 @@ import crypto from 'crypto';
 
 console.log(chalk.blue("This scripts creates some users, course, courseInstance"));
 
-const dbUrl = "mongodb+srv://db_user:chri5t@cluster0-mitxy.mongodb.net/timetable?retryWrites=true&w=majority";
+const dbUrl = "";
 mongoose.connect( dbUrl, {useNewUrlParser: true})
 .then(() => console.log(chalk.green("Successfully connected to the database")));
 
