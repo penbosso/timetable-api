@@ -23,7 +23,7 @@ exports.insert = (req, res) => {
             // this.getById(result._id);
           })
           .catch(function (err){
-            res.status(404).send(err);
+            res.status(404).send({message: err});
         });
     }
   });
@@ -36,7 +36,7 @@ exports.getById = (req, res) => {
           res.status(200).send(result);
   })
   .catch(function (err){
-    res.status(404).send(err);
+    res.status(404).send({message : err});
 });
 };
 
@@ -50,7 +50,7 @@ exports.patchById = (req, res) => {
           res.status(204).send({});
   })
   .catch(function (err){
-    res.status(404).send(err);
+    res.status(404).send({message : err});
 });
 };
 
