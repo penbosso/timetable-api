@@ -38,7 +38,7 @@ exports.course_get_one = (req, res) => {
 
 exports.course_update = (req, res) => {
 
-  if(!req.body.content) {
+  if(!req.body) {
     return res.status(400).send({
         message: "course content can not be empty"
     });
@@ -100,6 +100,13 @@ exports.create_course = (req, res) => {
   }
 
   const course = new Course(req.body);
+
+  if(Course.find({code: course.code })) {
+    return res.status(403).send({
+      message: "A Course with the same code already exist"
+  });
+  }
+
   course.save()
   .then(data => {
     res.status(201).json(data);

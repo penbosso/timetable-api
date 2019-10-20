@@ -1,7 +1,7 @@
 import PersonalSchedule from './personalSchedule.model';
 
 
-exports.course_get_all = (req, res) => {
+exports.get_all = (req, res) => {
   PersonalSchedule.find()
         .then(results => {
           res.status(200).json(results);
@@ -14,7 +14,7 @@ exports.course_get_all = (req, res) => {
 };
 
 
-exports.course_get_one = (req, res) => {
+exports.get_one = (req, res) => {
  PersonalSchedule.findById(req.params.id)
       .then(personalSchedule => {
           if(!personalSchedule) {
@@ -36,41 +36,42 @@ exports.course_get_one = (req, res) => {
       });
 };
 
-exports.course_update = (req, res) => {
+exports.update = (req, res) => {
 
-  if(!req.body.content) {
+  if(!req.body) {
     return res.status(400).send({
         message: "personal schedule content can not be empty"
     });
+  }
+
+  PersonalSchedule.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      description: req.body.description,
+      day: req.body.day,
+      start_time: req.body.start_time,
+      end_time: req.body.end_time,
+      user: req.body.user
+  }, {new: true})
+  .then(personalSchedule => {
+      if(!personalSchedule) {
+          return res.status(404).send({
+              message: "personal schedule not found with id " + req.params.id
+          });
+      }
+      res.send(personalSchedule);
+  }).catch(err => {
+      if(err.kind === 'ObjectId') {
+          return res.status(404).send({
+              message: "personal schedule not found with id " + req.params.id
+          });
+      }
+      return res.status(500).send({
+          message: "Error updating personal schedule with id " + req.params.id
+      });
+  });
 }
 
-PersonalSchedule.findByIdAndUpdate(req.params.id, {
-    title: req.body.title,
-    description: req.body.description,
-    start_time: req.body.start_time,
-    end_time: req.body.end_time,
-    user: req.body.user
-}, {new: true})
-.then(personalSchedule => {
-    if(!personalSchedule) {
-        return res.status(404).send({
-            message: "personal schedule not found with id " + req.params.id
-        });
-    }
-    res.send(personalSchedule);
-}).catch(err => {
-    if(err.kind === 'ObjectId') {
-        return res.status(404).send({
-            message: "personal schedule not found with id " + req.params.id
-        });
-    }
-    return res.status(500).send({
-        message: "Error updating personal schedule with id " + req.params.id
-    });
-});
-}
-
-exports.course_delete = ( req, res) => {
+exports.delete = ( req, res) => {
   PersonalSchedule.findByIdAndRemove(req.params.id)
     .then(personalSchedule => {
         if(!personalSchedule) {
@@ -91,7 +92,7 @@ exports.course_delete = ( req, res) => {
     });
 }
 
-exports.create_course = (req, res) => {
+exports.create = (req, res) => {
   if(!req.body) {
     return res.status(400).send({
         message: "Personal schedule content can not be empty"

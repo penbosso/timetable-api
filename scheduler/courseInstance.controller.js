@@ -59,6 +59,13 @@ exports.schedule_get_one = (req, res) => {
 }
 
 exports.schedule_update = (req, res) => {
+
+  if(!req.body) {
+    return res.status(400).send({
+        message: "course content can not be empty"
+      });
+  }
+  
   CourseInstance.findByIdAndUpdate(req.params.id, {
       venue: req.body.venue,
       lecturer: req.body.lecturer,

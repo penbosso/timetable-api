@@ -1,7 +1,7 @@
-import AddedSchedule from './courseInstance.model';
+import AddedSchedule from './addedSchedule.model';
 
 exports.my_list = (req, res) => {
-  AddedSchedule.find({user : req.boday.user_id})
+  AddedSchedule.find({user : "req.body.user_id"})
             .populate("schedule")
             .exec()
             .then(results => {
@@ -36,7 +36,7 @@ exports.get_one = (req, res) => {
       });
 }
 
-exports.my_schedule_delete = ( req, res) => {
+exports.delete = ( req, res) => {
   AddedSchedule.findByIdAndRemove(req.params.id)
     .then(addedSchedule => {
         if(!addedSchedule) {
@@ -58,7 +58,7 @@ exports.my_schedule_delete = ( req, res) => {
 }
 
 
-exports.create_schedule = (req, res) => {
+exports.create = (req, res) => {
   if(!req.body) {
     return res.status(400).send({
         message: "Schedule content can not be empty"
@@ -73,5 +73,5 @@ exports.create_schedule = (req, res) => {
       res.status(500).send({
           message: err.message || "Something wrong while saving."
         });
-      });
+    });
 };
