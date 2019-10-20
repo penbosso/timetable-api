@@ -1,7 +1,7 @@
 import AddedSchedule from './addedSchedule.model';
 
 exports.my_list = (req, res) => {
-  AddedSchedule.find({user : "req.body.user_id"})
+  AddedSchedule.find({user : req.param.id})
             .populate("schedule")
             .exec()
             .then(results => {

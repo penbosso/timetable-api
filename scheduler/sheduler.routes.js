@@ -37,8 +37,7 @@ app.put('/personal-schedules/:id', PersonalController.update);
 app.delete('/personal-schedules/:id', PersonalController.delete);
 
 
-
-app.get('/added-schedules', AddedController.my_list);
+app.get('/added-schedules/:id', AddedController.my_list);
 app.get('/added-schedules/:id', AddedController.get_one);
 app.post('/added-schedules', AddedController.create);
 app.delete('/added-schedules/:id', AddedController.delete);
