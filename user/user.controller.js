@@ -80,3 +80,13 @@ exports.removeById = (req, res) => {
           res.status(204).send({});
       });
 };
+
+exports.makeEditor = (req, res) => {console.log(req.params.userId);
+  return UserModel.updatePermision(req, res, 2);
+}
+
+exports.makeAdmin = (req, res) => {console.log(req.params.userId);
+  return UserModel.updatePermision(req, res, 3);
+}
+
+
