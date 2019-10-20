@@ -22,7 +22,9 @@ if (process.env.ENV === 'Test'){
 
 // Connecting to the database
 mongoose.connect(dbUrl, {
-    useNewUrlParser: true
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useFindAndModify: false
 }).then(() => {
     console.log(chalk.green("Successfully connected to the database"));
 }).catch(err => {

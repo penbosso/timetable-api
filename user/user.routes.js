@@ -14,7 +14,7 @@ const routesConfig = function (app) {
   ]);
   app.get('/users', [
     ValidationMiddleware.validJWTNeeded,
-    PermissionMiddleware.minimumPermissionLevelRequired(EDITOR),
+    PermissionMiddleware.minimumPermissionLevelRequired(ADMIN),
     UserController.list
   ]);
   app.get('/users/:userId', [
@@ -35,6 +35,17 @@ const routesConfig = function (app) {
     UserController.removeById
   ]);
 
+  app.put('/users/editor/:userId',[
+    ValidationMiddleware.validJWTNeeded,
+    PermissionMiddleware.minimumPermissionLevelRequired(ADMIN),
+    UserController.makeEditor
+  ]);
+
+  app.put('/users/admin/:userId', [
+    ValidationMiddleware.validJWTNeeded,
+    PermissionMiddleware.minimumPermissionLevelRequired(ADMIN),
+    UserController.makeAdmin
+  ])
 }
 
 

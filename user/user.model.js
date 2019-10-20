@@ -93,5 +93,30 @@ exports.removeById = (userId) => {
   });
 };
 
+exports.updatePermision = (req, res, permission) => {
+  User.findByIdAndUpdate(req.params.userId, {
+    permissionLevel: permission
+  }, {new: true})
+  .then(userModel => {
+    if(!userModel) {
+      return res.status(404).send({
+        message: "User not found with id " + req.params.id
+      });
+    }
+    res.status(201).send({message: "Permission updated successful"});
+  })
+  .catch(err => {
+    if(err.kind === 'ObjectId') {
+        return res.status(404).send({
+            message: "courseInstance(schedule) not found with id " + req.params.id
+        });
+    }
+    return res.status(500).send({
+    message: "Error updating user with id " + req.params.id
+  });
+
+  });
+}
+
 //Export model
 // module.exports = mongoose.model('User', userSchema);
