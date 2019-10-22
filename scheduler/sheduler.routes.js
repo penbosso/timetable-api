@@ -18,7 +18,7 @@ const routesConfig = (app) => {
   app.get('/schedules/similar/:_id',[
     CourseInstancController.schedule_get_similar
   ]);
-  app.post('/schedule',[
+  app.post('/schedules',[
     ValidationMiddleware.validJWTNeeded,
     PermissionMiddleware.minimumPermissionLevelRequired(EDITOR),
     CourseInstancController.create_schedule
@@ -92,7 +92,7 @@ app.get('/added-schedules/:id',[
   PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
   AddedController.my_list
 ]);
-app.get('/added-schedules/:id', [
+app.get('/added-schedule/:id', [
   ValidationMiddleware.validJWTNeeded,
   PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
   AddedController.get_one
