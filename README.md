@@ -35,7 +35,9 @@ $ npm start
 ```
 
 ## API end points
-| ------------------|:---------------------:|:---------------:|
+
+| Status          | End point      | Description       |
+| ------------------|:---------------------:|:---------------: |
 | :heavy_check_mark:|POST: /users |Sign up user |
 | :heavy_check_mark:|GET: /users |List of users|
 | :heavy_check_mark:|GET: /users/:id |Retrive user with id |
